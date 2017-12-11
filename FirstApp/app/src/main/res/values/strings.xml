@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Hello World</string>
+    <string name="giveYourName">Write your name:"</string>
+    <string name="showNameButton">Show</string>
+    <string name="veryImportantSentence">Hello World!!!</string>
+    <string name="keyName">name</string>
+    <string name="upperButton">GO1</string>
+    <string name="lowerButton">GO2</string>
+</resources>
