@@ -1,6 +1,5 @@
 package com.example.ekrzkit.firstapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,20 +13,16 @@ class Config{
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
-    Context context;
-    Button button;
-    TextView name;
+    private TextView name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        context = getApplicationContext();
-        textView = (TextView)findViewById(R.id.veryImportanText);
+        TextView textView = findViewById(R.id.veryImportantText);
         textView.setText(getString(R.string.veryImportantSentence));
-        name = (TextView)findViewById(R.id.name);
-        button = (Button)findViewById(R.id.lowerButton);
+        name = findViewById(R.id.name);
+        Button button = findViewById(R.id.lowerButton);
         button.setText(getString(R.string.lowerButton));
         button.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -38,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
     });
     }
 
+   @SuppressWarnings("unused")
    public void OnButtonClick(View view){
        Intent intent = new Intent(MainActivity.this,NewActivity.class);
        startActivityForResult(intent,Config.RESULT_CODE);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

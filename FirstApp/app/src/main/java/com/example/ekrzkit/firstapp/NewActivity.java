@@ -12,22 +12,24 @@ import android.widget.TextView;
 
 public class NewActivity extends AppCompatActivity implements Button.OnClickListener {
 
-    TextView text;
-    EditText name;
+    private EditText name;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newct);
-        name = (EditText)findViewById(R.id.name);
-        text = (TextView)findViewById(R.id.giveYourNameText);
+        name = findViewById(R.id.name);
+        TextView text = findViewById(R.id.giveYourNameText);
         text.setText(getString(R.string.giveYourName));
         Button b = new Button(this);
-        b.setX(400);
-        b.setY(800);
+       //b.layout(R.id.parent, R.id.name, R.id.parent, R.id.parent);
+       // b.layout();
+        //b.setX(400);
+        //b.setY(800);
         b.setText(getString(R.string.showNameButton));
-        ConstraintLayout cl = (ConstraintLayout)findViewById(R.id.newLayout);
+        ConstraintLayout cl = findViewById(R.id.newLayout);
         ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+        //cl.
         cl.addView(b,lp);
         b.setOnClickListener(this);
     }
