@@ -3,11 +3,11 @@ package com.example.ekrzkit.firstapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class NewActivity extends AppCompatActivity implements Button.OnClickListener {
@@ -17,21 +17,20 @@ public class NewActivity extends AppCompatActivity implements Button.OnClickList
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.newct);
+        setContentView(R.layout.activity_new);
         name = findViewById(R.id.name);
         TextView text = findViewById(R.id.giveYourNameText);
         text.setText(getString(R.string.giveYourName));
-        Button b = new Button(this);
-       //b.layout(R.id.parent, R.id.name, R.id.parent, R.id.parent);
-       // b.layout();
-        //b.setX(400);
-        //b.setY(800);
-        b.setText(getString(R.string.showNameButton));
-        ConstraintLayout cl = findViewById(R.id.newLayout);
-        ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        //cl.
-        cl.addView(b,lp);
-        b.setOnClickListener(this);
+        Button button = new Button(this);
+        button.setText(getString(R.string.showNameButton));
+        button.setWidth(50);
+        button.setHeight(50);
+        RelativeLayout relativeLayout = findViewById(R.id.newLayout);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        layoutParams.setMargins(0,650,0,0);
+        relativeLayout.addView(button,layoutParams);
+        button.setOnClickListener(this);
     }
 
     @Override

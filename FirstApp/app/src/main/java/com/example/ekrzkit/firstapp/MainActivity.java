@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
     });
     }
 
-   @SuppressWarnings("unused")
-   public void OnButtonClick(View view){
+   public void OnButtonClick(@SuppressWarnings("unused") View view){
        Intent intent = new Intent(MainActivity.this,NewActivity.class);
        startActivityForResult(intent,Config.RESULT_CODE);
     }
