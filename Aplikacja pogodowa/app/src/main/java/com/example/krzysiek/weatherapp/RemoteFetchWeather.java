@@ -17,14 +17,14 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 
-public class RemoteFetch extends AsyncTask<String, Void, JSONObject> {
+public class RemoteFetchWeather extends AsyncTask<String, Void, JSONObject> {
 
     private static final String OPEN_WEATHER_MAP_API =
             "http://api.openweathermap.org/data/2.5/weather?q=";
     Context context;
     JSONObject data;
 
-    public RemoteFetch(Context context) {
+    public RemoteFetchWeather(Context context) {
         this.context = context;
     }
 
@@ -61,6 +61,4 @@ public class RemoteFetch extends AsyncTask<String, Void, JSONObject> {
         }
         return data;
     }
-
-
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -20,27 +21,35 @@ public class StartActivity extends AppCompatActivity {
 
     private ListView list ;
     private ArrayAdapter<String> adapter ;
+    TextView pickCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
+        pickCity = findViewById(R.id.pickCity);
+        pickCity.setText(R.string.pick_a_city);
         list = (ListView) findViewById(R.id.listView);
 
         final String cities[] = {"Lodz",
-                            "Warsaw",
-                            "Krakow",
-                            "Gdansk",
-                            "Szczecin",
-                            "Katowice",
-                            "Wroclaw",
-                            "Poznan",
-                            "Bydgoszcz",
-                            "Lublin",
-                            "Zielona Gora",
-                            "Sieradz",
-                            "Zdunska Wola"};
+                                 "Warsaw",
+                                 "Krakow",
+                                 "Gdansk",
+                                 "Szczecin",
+                                 "Katowice",
+                                 "Wroclaw",
+                                 "Poznan",
+                                 "Bydgoszcz",
+                                 "Lublin",
+                                 "Zielona Gora",
+                                 "Sieradz",
+                                 "Zdunska Wola",
+                                 "London",
+                                 "Moscow",
+                                 "Tokyo",
+                                 "Washington",
+                                 "Mexico",
+                                 "Cairo"};
 
         ArrayList<String> cityList = new ArrayList<String>();
         cityList.addAll(Arrays.asList(cities));

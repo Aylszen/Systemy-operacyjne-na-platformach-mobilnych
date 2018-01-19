@@ -1,16 +1,15 @@
 package com.example.krzysiek.weatherapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.ViewDebug;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import static java.lang.String.valueOf;
@@ -18,21 +17,36 @@ import static java.lang.String.valueOf;
 public class MainActivity extends AppCompatActivity {
     private TextView cityText;
     private TextView temperature;
+    private TextView description;
+    private TextView humidity;
+    private TextView pressure;
+
+    private ImageView icon;
+    JSONObject data;
+    Weather weather;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {
          super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String city = this.getIntent().getStringExtra("CITY");
-        cityText = findViewById(R.id.textView2);
-        JSONObject data;
-        data = new RemoteFetch(getApplicationContext()).execute(city).get();
-            temperature  = findViewById(R.id.current_temperature_field);
-            //Log.i("MAIN", ("" + data.getInt("main")));
-            JSONObject mainObj = data.getJSONObject("main");
-            //temperature.setText (Integer.parseInt(jArr.getInt("temp")));
-            Log.i("MAIN", valueOf(mainObj.getDouble("temp")));
-            temperature.setText (String.valueOf((mainObj.getDouble("temp"))));
+        cityText = findViewById(R.id.city_field);
+        temperature  = findViewById(R.id.current_temperature_field);
+        icon = findViewById(R.id.icon);
+        description = findViewById(R.id.description);
+        pressure = findViewById(R.id.pressure);
+        humidity = findViewById(R.id.humidity);
+
+        data = new RemoteFetchWeather(getApplicationContext()).execute(city).get();
+        weather = ParseJSON.parse(getApplicationContext(), data);
+
+        temperature.setText (Double.toString(weather.temp) + " ℃");
+        cityText.setText(weather.cityName);
+        Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
+        icon.setImageBitmap(img);
+        description.setText(weather.description);
+        pressure.setText(getApplicationContext().getString(R.string.pressure) + " " + weather.pressure + " hPa");
+        humidity.setText(getApplicationContext().getString(R.string.humidity) + " " + weather.humidity + "%");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -41,15 +55,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        //temperature.setText(Double.toString(data.getDouble("temp")));
-
-
-         //   Log.v("DUPA", data.getString("cod") );
-
-        // System.out.println(Double.toString(data.getDouble("temp")));
-
-
-
 
     }
 }
