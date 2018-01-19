@@ -1,28 +1,29 @@
 package com.example.krzysiek.weatherapp;
 
-/**
- * Created by Krzysiek on 18.01.2018.
+/*
+  Created by Krzysiek on 18.01.2018.
  */
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
 
-public class RemoteFetchWeather extends AsyncTask<String, Void, JSONObject> {
+@SuppressLint("StaticFieldLeak")
+class RemoteFetchWeather extends AsyncTask<String, Void, JSONObject> {
 
     private static final String OPEN_WEATHER_MAP_API =
             "http://api.openweathermap.org/data/2.5/weather?q=";
-    Context context;
-    JSONObject data;
+    private final Context context;
+    private JSONObject data;
 
     public RemoteFetchWeather(Context context) {
         this.context = context;
@@ -30,19 +31,18 @@ public class RemoteFetchWeather extends AsyncTask<String, Void, JSONObject> {
 
     @Override
     protected JSONObject doInBackground(String... strings) {
-        Log.i("DUPA", "estst");
         try {
             URL url = new URL(OPEN_WEATHER_MAP_API + strings[0] + "&units=metric&appid=" + context.getString(R.string.open_weather_maps_app_id));
             Log.i("CONTENT", strings[0]);
 
-            HttpURLConnection connection = null;
+            HttpURLConnection connection;
             connection = (HttpURLConnection) url.openConnection();
 
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(connection.getInputStream()));
 
-            StringBuffer json = new StringBuffer(1024);
-            String tmp = "";
+            StringBuilder json = new StringBuilder(1024);
+            String tmp;
             Log.i("CONTENT", "BEGIN");
             while ((tmp = reader.readLine()) != null) {
                 Log.i("CONTENT", tmp);

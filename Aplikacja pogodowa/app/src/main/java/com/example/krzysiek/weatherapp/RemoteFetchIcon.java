@@ -1,23 +1,19 @@
 package com.example.krzysiek.weatherapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by Krzysiek on 19.01.2018.
- */
+@SuppressLint("StaticFieldLeak")
+class RemoteFetchIcon  extends AsyncTask<String, Void, byte[]> {
 
-public class RemoteFetchIcon  extends AsyncTask<String, Void, byte[]> {
-
-    Context context;
+    private final Context context;
 
     public RemoteFetchIcon(Context context) {
         this.context = context;
@@ -25,32 +21,30 @@ public class RemoteFetchIcon  extends AsyncTask<String, Void, byte[]> {
 
     @Override
     protected byte[] doInBackground(String... strings) {
-        HttpURLConnection connection = null ;
-        InputStream is = null;
+        HttpURLConnection connection;
+        InputStream is;
         try {
             connection = (HttpURLConnection) ( new URL(context.getString(R.string.open_weather_maps_img) + strings[0]  + ".png")).openConnection();
+            Log.i("WEATHER",strings[0]);
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
           //  connection.setDoOutput(true);
             connection.connect();
-
-            Log.v("ICON",(context.getString(R.string.open_weather_maps_img) + strings[0]  + ".png"));
+            Log.i("WEATHER",(context.getString(R.string.open_weather_maps_img) + strings[0]  + ".png"));
 
             is = connection.getInputStream();
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[4096];
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             while ( is.read(buffer) != -1)
                 baos.write(buffer);
 
+            Log.i("WEATHER", String.valueOf(baos.toByteArray().length));
+
             return baos.toByteArray();
         }
         catch(Throwable t) {
             t.printStackTrace();
-        }
-        finally {
-            try { is.close(); } catch(Throwable t) {}
-            try { connection.disconnect(); } catch(Throwable t) {}
         }
         return null;
     }

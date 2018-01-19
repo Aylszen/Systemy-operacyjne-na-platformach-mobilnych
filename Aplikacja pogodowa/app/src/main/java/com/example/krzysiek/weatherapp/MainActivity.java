@@ -1,5 +1,6 @@
 package com.example.krzysiek.weatherapp;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -12,47 +13,37 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
-import static java.lang.String.valueOf;
-
 public class MainActivity extends AppCompatActivity {
-    private TextView cityText;
-    private TextView temperature;
-    private TextView description;
-    private TextView humidity;
-    private TextView pressure;
 
-    private ImageView icon;
-    JSONObject data;
-    Weather weather;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {
          super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String city = this.getIntent().getStringExtra("CITY");
-        cityText = findViewById(R.id.city_field);
-        temperature  = findViewById(R.id.current_temperature_field);
-        icon = findViewById(R.id.icon);
-        description = findViewById(R.id.description);
-        pressure = findViewById(R.id.pressure);
-        humidity = findViewById(R.id.humidity);
+            TextView cityText = findViewById(R.id.city_field);
+            TextView temperature = findViewById(R.id.current_temperature_field);
+            ImageView icon = findViewById(R.id.icon);
+            TextView description = findViewById(R.id.description);
+            TextView pressure = findViewById(R.id.pressure);
+            TextView humidity = findViewById(R.id.humidity);
 
-        data = new RemoteFetchWeather(getApplicationContext()).execute(city).get();
-        weather = ParseJSON.parse(getApplicationContext(), data);
+            JSONObject data = new RemoteFetchWeather(getApplicationContext()).execute(city).get();
+            Weather weather = ParseJSON.parse(getApplicationContext(), data);
 
-        temperature.setText (Double.toString(weather.temp) + " ℃");
+            String celsius = " ℃";
+            temperature.setText (weather.temp + celsius);
         cityText.setText(weather.cityName);
         Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
         icon.setImageBitmap(img);
         description.setText(weather.description);
-        pressure.setText(getApplicationContext().getString(R.string.pressure) + " " + weather.pressure + " hPa");
-        humidity.setText(getApplicationContext().getString(R.string.humidity) + " " + weather.humidity + "%");
+            String hPa = " hPa";
+            pressure.setText(getApplicationContext().getString(R.string.pressure) + " " + weather.pressure + hPa);
+            String percent = " %";
+            humidity.setText(getApplicationContext().getString(R.string.humidity) + " " + weather.humidity + percent);
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (JSONException | InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 

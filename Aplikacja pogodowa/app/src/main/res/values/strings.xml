@@ -3,7 +3,7 @@
     <string name="open_weather_maps_app_id">e52a8d53375abe113c312fe4f4519454</string>
     <string name="open_weather_maps_img">http://openweathermap.org/img/w/</string>
     <string name="pick_a_city">Pick a city:</string>
-    <string name="pressure">Pressure:</string>
-    <string name="humidity">Humidity:</string>
-
+    <string name="pressure">Pressure: </string>
+    <string name="humidity">Humidity: </string>
+    <string name="weather">Weather</string>
 </resources>

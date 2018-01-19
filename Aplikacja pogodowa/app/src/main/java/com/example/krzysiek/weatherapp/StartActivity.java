@@ -9,27 +9,18 @@ import android.widget.ListView;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by Krzysiek on 18.01.2018.
- */
-
 public class StartActivity extends AppCompatActivity {
-
-    private ListView list ;
-    private ArrayAdapter<String> adapter ;
-    TextView pickCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        pickCity = findViewById(R.id.pickCity);
+        TextView pickCity = findViewById(R.id.pickCity);
         pickCity.setText(R.string.pick_a_city);
-        list = (ListView) findViewById(R.id.listView);
+        ListView list = findViewById(R.id.listView);
 
         final String cities[] = {"Lodz",
                                  "Warsaw",
@@ -51,10 +42,10 @@ public class StartActivity extends AppCompatActivity {
                                  "Mexico",
                                  "Cairo"};
 
-        ArrayList<String> cityList = new ArrayList<String>();
+        ArrayList<String> cityList = new ArrayList<>();
         cityList.addAll(Arrays.asList(cities));
 
-        adapter = new ArrayAdapter<String>(this, R.layout.row, cityList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.row, cityList);
 
         list.setAdapter(adapter);
 

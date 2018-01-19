@@ -8,16 +8,12 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by Krzysiek on 18.01.2018.
- */
-
-public class ParseJSON {
+class ParseJSON {
 
     public static Weather parse(Context context, JSONObject data) throws JSONException, ExecutionException, InterruptedException {
         Weather weather = new Weather();
         JSONObject mainObj = data.getJSONObject("main");
-        weather.temp = mainObj.getDouble("temp");
+        weather.temp = String.valueOf(mainObj.getDouble("temp"));
         weather.pressure = String.valueOf(mainObj.getInt("pressure"));
         weather.humidity = String.valueOf(mainObj.getInt("humidity"));
 
