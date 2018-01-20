@@ -28,7 +28,7 @@ public class NewActivity extends AppCompatActivity implements Button.OnClickList
         RelativeLayout relativeLayout = findViewById(R.id.newLayout);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-        layoutParams.setMargins(0,650,0,0);
+        layoutParams.setMargins(0,850,0,0);
         relativeLayout.addView(button,layoutParams);
         button.setOnClickListener(this);
     }
