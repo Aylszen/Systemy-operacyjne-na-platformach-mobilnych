@@ -1,4 +1,4 @@
-package com.example.filip.labapp3;
+package com.example.krzysiek.labapp3;
 
 import org.junit.Test;
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:screenOrientation="portrait"
     android:orientation="vertical"
-    tools:context="com.example.filip.labapp3.Complex">
+    tools:context="com.example.krzysiek.labapp3.Complex">
 
     <TextView
         android:id="@+id/txtScreen"
