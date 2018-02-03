@@ -38,7 +38,7 @@ public class NewActivity extends AppCompatActivity implements Button.OnClickList
         Intent intent = new Intent(NewActivity.this,MainActivity.class);
         String text = String.valueOf(name.getText());
         intent.putExtra(getString(R.string.keyName),text);
-        setResult(Config.RESULT_CODE,intent);
+        setResult(RESULT_OK,intent);
         finish();
     }
 }

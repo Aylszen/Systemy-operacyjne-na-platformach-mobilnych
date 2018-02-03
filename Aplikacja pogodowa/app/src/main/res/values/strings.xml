@@ -6,4 +6,8 @@
     <string name="pressure">Pressure: </string>
     <string name="humidity">Humidity: </string>
     <string name="weather">Weather</string>
+    <string name="celsius"> ℃</string>
+    <string name="hPa"> hPa</string>
+    <string name="percent">  %</string>
+    percent
 </resources>

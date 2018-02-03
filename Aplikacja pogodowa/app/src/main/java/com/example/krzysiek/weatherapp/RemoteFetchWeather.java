@@ -1,9 +1,5 @@
 package com.example.krzysiek.weatherapp;
 
-/*
-  Created by Krzysiek on 18.01.2018.
- */
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -22,6 +18,7 @@ class RemoteFetchWeather extends AsyncTask<String, Void, JSONObject> {
 
     private static final String OPEN_WEATHER_MAP_API =
             "http://api.openweathermap.org/data/2.5/weather?q=";
+    private static final String MIDDLE_SENTENCE = "&units=metric&appid=";
     private final Context context;
     private JSONObject data;
 
@@ -32,7 +29,7 @@ class RemoteFetchWeather extends AsyncTask<String, Void, JSONObject> {
     @Override
     protected JSONObject doInBackground(String... strings) {
         try {
-            URL url = new URL(OPEN_WEATHER_MAP_API + strings[0] + "&units=metric&appid=" + context.getString(R.string.open_weather_maps_app_id));
+            URL url = new URL(OPEN_WEATHER_MAP_API + strings[0] + MIDDLE_SENTENCE + context.getString(R.string.open_weather_maps_app_id));
             Log.i("CONTENT", strings[0]);
 
             HttpURLConnection connection;

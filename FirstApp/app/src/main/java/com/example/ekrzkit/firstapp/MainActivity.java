@@ -7,10 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-class Config{
-    static final int RESULT_CODE = 100;
-}
-
 public class MainActivity extends AppCompatActivity {
 
     private TextView name;
@@ -25,24 +21,24 @@ public class MainActivity extends AppCompatActivity {
         Button button = findViewById(R.id.lowerButton);
         button.setText(getString(R.string.lowerButton));
         button.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this,NewActivity.class);
-            startActivityForResult(intent,Config.RESULT_CODE);
-        }
-    });
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NewActivity.class);
+                startActivityForResult(intent, Config.RESULT_CODE);
+            }
+        });
     }
 
-   public void OnButtonClick(@SuppressWarnings("unused") View view){
-       Intent intent = new Intent(MainActivity.this,NewActivity.class);
-       startActivityForResult(intent,Config.RESULT_CODE);
+    public void onButtonClick(@SuppressWarnings("unused") View view) {
+        Intent intent = new Intent(MainActivity.this, NewActivity.class);
+        startActivityForResult(intent, Config.RESULT_CODE);
     }
 
     @SuppressWarnings("ConstantConditions")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == Config.RESULT_CODE){
+        if (requestCode == Config.RESULT_CODE && resultCode == RESULT_OK) {
             name.setText((CharSequence) data.getExtras().get(getString(R.string.keyName)));
         }
     }

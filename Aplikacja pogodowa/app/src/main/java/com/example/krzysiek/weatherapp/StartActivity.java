@@ -22,28 +22,8 @@ public class StartActivity extends AppCompatActivity {
         pickCity.setText(R.string.pick_a_city);
         ListView list = findViewById(R.id.listView);
 
-        final String cities[] = {"Lodz",
-                                 "Warsaw",
-                                 "Krakow",
-                                 "Gdansk",
-                                 "Szczecin",
-                                 "Katowice",
-                                 "Wroclaw",
-                                 "Poznan",
-                                 "Bydgoszcz",
-                                 "Lublin",
-                                 "Zielona Gora",
-                                 "Sieradz",
-                                 "Zdunska Wola",
-                                 "London",
-                                 "Moscow",
-                                 "Tokyo",
-                                 "Washington",
-                                 "Mexico",
-                                 "Cairo"};
-
         ArrayList<String> cityList = new ArrayList<>();
-        cityList.addAll(Arrays.asList(cities));
+        cityList.addAll(Arrays.asList(getResources().getStringArray(R.array.cityArray)));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.row, cityList);
 
@@ -52,9 +32,9 @@ public class StartActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String city = cities[i];
+                String city[] = getResources().getStringArray(R.array.cityArray);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("CITY", city);
+                intent.putExtra("CITY", city[i]);
                 startActivity(intent);
             }
         });

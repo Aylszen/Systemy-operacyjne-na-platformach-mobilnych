@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cityArray">
+        <item>Lodz</item>
+        <item>Warsaw</item>
+        <item>Krakow</item>
+        <item>Gdansk</item>
+        <item>Szczecin</item>
+        <item>Katowice</item>
+        <item>Wroclaw</item>
+        <item>Poznan"</item>
+        <item>Bydgoszcz</item>
+        <item>Lublin</item>
+        <item>Zielona Gora</item>
+        <item>Sieradz</item>
+        <item>Zdunska Wola</item>
+        <item>London</item>
+        <item>Moscow</item>
+        <item>Tokyo</item>
+        <item>Washington</item>
+        <item>Mexico</item>
+        <item>Cairo</item>
+    </string-array>
+</resources>
