@@ -1,5 +1,5 @@
 package com.example.ekrzkit.firstapp;
 
 class Config {
-    static final int RESULT_CODE = 100;
+    static final int REQUEST_CODE = 100;
 }

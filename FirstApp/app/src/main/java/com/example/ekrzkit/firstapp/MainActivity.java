@@ -24,21 +24,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, NewActivity.class);
-                startActivityForResult(intent, Config.RESULT_CODE);
+                startActivityForResult(intent, Config.REQUEST_CODE);
             }
         });
     }
 
     public void onButtonClick(@SuppressWarnings("unused") View view) {
         Intent intent = new Intent(MainActivity.this, NewActivity.class);
-        startActivityForResult(intent, Config.RESULT_CODE);
+        startActivityForResult(intent, Config.REQUEST_CODE);
     }
 
     @SuppressWarnings("ConstantConditions")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Config.RESULT_CODE && resultCode == RESULT_OK) {
+        if (requestCode == Config.REQUEST_CODE && resultCode == RESULT_OK) {
             name.setText((CharSequence) data.getExtras().get(getString(R.string.keyName)));
         }
     }
