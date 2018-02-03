@@ -21,14 +21,10 @@ public class StartActivity extends AppCompatActivity {
         TextView pickCity = findViewById(R.id.pickCity);
         pickCity.setText(R.string.pick_a_city);
         ListView list = findViewById(R.id.listView);
-
         ArrayList<String> cityList = new ArrayList<>();
         cityList.addAll(Arrays.asList(getResources().getStringArray(R.array.cityArray)));
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.row, cityList);
-
         list.setAdapter(adapter);
-
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

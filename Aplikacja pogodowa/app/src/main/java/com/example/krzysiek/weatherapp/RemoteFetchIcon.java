@@ -12,7 +12,6 @@ import java.net.URL;
 
 @SuppressLint("StaticFieldLeak")
 class RemoteFetchIcon extends AsyncTask<String, Void, byte[]> {
-
     private final Context context;
 
     public RemoteFetchIcon(Context context) {
@@ -28,19 +27,14 @@ class RemoteFetchIcon extends AsyncTask<String, Void, byte[]> {
             Log.i("WEATHER", strings[0]);
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
-
             connection.connect();
             Log.i("WEATHER", (context.getString(R.string.open_weather_maps_img) + strings[0] + ".png"));
-
             is = connection.getInputStream();
             byte[] buffer = new byte[4096];
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
             while (is.read(buffer) != -1)
                 baos.write(buffer);
-
             Log.i("WEATHER", String.valueOf(baos.toByteArray().length));
-
             return baos.toByteArray();
         } catch (Throwable t) {
             t.printStackTrace();

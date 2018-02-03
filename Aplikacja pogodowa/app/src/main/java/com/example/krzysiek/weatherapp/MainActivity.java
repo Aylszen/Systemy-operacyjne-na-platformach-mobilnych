@@ -28,10 +28,8 @@ public class MainActivity extends AppCompatActivity {
             TextView description = findViewById(R.id.description);
             TextView pressure = findViewById(R.id.pressure);
             TextView humidity = findViewById(R.id.humidity);
-
             JSONObject data = new RemoteFetchWeather(getApplicationContext()).execute(city).get();
             Weather weather = ParseJSON.parse(getApplicationContext(), data);
-
             temperature.setText(weather.temp + getApplicationContext().getString(R.string.celsius));
             cityText.setText(weather.cityName);
             Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
@@ -39,10 +37,8 @@ public class MainActivity extends AppCompatActivity {
             description.setText(weather.description);
             pressure.setText(getApplicationContext().getString(R.string.pressure) + " " + weather.pressure + getApplicationContext().getString(R.string.hPa));
             humidity.setText(getApplicationContext().getString(R.string.humidity) + " " + weather.humidity + getApplicationContext().getString(R.string.percent));
-
         } catch (JSONException | InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-
     }
 }
